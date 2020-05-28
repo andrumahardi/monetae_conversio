@@ -1,18 +1,36 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <Navbar />
+    <div id="home-screen">
+      <MainBody />
+      <ActionBody />
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+
+import Navbar from '../components/Navbar'
+import ActionBody from '../components/ActionBody'
+import MainBody from '../components/MainBody'
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
+  components: { Navbar, ActionBody, MainBody }
 }
 </script>
+
+<style scoped>
+
+#home-screen{
+  display: flex;
+  width: 100vw;
+  background-color: #0d181f;
+}
+
+@media screen and (max-width: 750px) {
+  #home-screen {
+    flex-direction: column;
+  }
+}
+
+</style>
