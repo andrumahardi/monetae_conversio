@@ -63,7 +63,6 @@ export default {
 <style scoped>
 
 #main-body {
-  width: calc(100vw - 20rem);
   height: calc(100vh - 3rem);
 }
 

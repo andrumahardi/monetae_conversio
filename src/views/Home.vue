@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div id="main">
     <Navbar />
+    <Poster />
     <div id="home-screen">
-      <MainBody />
-      <ActionBody />
+      <Conversion />
     </div>
   </div>
 </template>
@@ -11,23 +11,34 @@
 <script>
 
 import Navbar from '../components/Navbar'
-import ActionBody from '../components/ActionBody'
-import MainBody from '../components/MainBody'
+import Conversion from '../components/Conversion'
+import Poster from '../components/Poster'
 
 export default {
-  components: { Navbar, ActionBody, MainBody }
+  components: { Navbar, Conversion, Poster }
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 
-#home-screen{
-  display: flex;
-  width: 100vw;
-  background-color: #0d181f;
+@import '../assets/styles/mixins';
+@import '../assets/styles/variables';
+
+#main{
+  background: url('../assets/background.png');
+  background-position: center;
+  background-size: cover;
 }
 
-@media screen and (max-width: 750px) {
+#home-screen{
+  @include flexbox (row, flex-end, center);
+}
+
+@media screen and (max-width: $mobile-breakpoint) {
+  #main{
+    background: none;
+  }
+
   #home-screen {
     flex-direction: column;
   }
