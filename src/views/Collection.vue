@@ -1,7 +1,7 @@
 <template>
   <div id="collection">
     <Navbar />
-    <Poster />
+    <RelativeChart />
     <section id="collection-section">
       <div id="base">
         <div>
@@ -40,9 +40,8 @@
 </template>
 
 <script>
-
 import Navbar from '../components/Navbar'
-import Poster from '../components/Poster'
+import RelativeChart from '../components/RelativeChart'
 
 export default {
   data () {
@@ -50,10 +49,10 @@ export default {
       searchFilter: null
     }
   },
-  components: { Navbar, Poster },
+  components: { Navbar, RelativeChart },
   computed: {
     rates () {
-      return this.$store.state.rates
+      return this.$store.state.rates.current
     }
   },
   watch: {
@@ -95,12 +94,6 @@ export default {
   display: flex;
   align-items: center;
   color: white;
-}
-
-#collection{
-  background: url('../assets/background.png');
-  background-position: center;
-  background-size: cover;
 }
 
 #collection-section

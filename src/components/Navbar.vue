@@ -68,7 +68,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 @import '../assets/styles/mixins';
 @import '../assets/styles/variables';
@@ -78,6 +78,9 @@ nav{
   padding: 0 1rem;
   height: 3rem;
   position: relative;
+  background: linear-gradient(45deg, $dark-blue, #32c8c5);
+  color: white;
+  box-shadow: 0 0 0.2rem 0.1rem $dark-blue;
 }
 
 #sm-screen-navmenu{

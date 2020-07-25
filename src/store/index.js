@@ -7,7 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     base: {},
-    rates: []
+    rates: {}
   },
   mutations: {
     SET_CURRENCY_DATA (state, { base, rates }) {
@@ -16,31 +16,41 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async fetchCurrenciesAsync ({ commit }, date) {
+    async fetchCurrenciesAsync ({ commit, state }, { currentDate, previousDate }) {
       let sessionData = JSON.parse(sessionStorage.getItem('data'))
       if (!sessionData) {
         try {
           const { data } = await httpRequest.get(
-            `/currency/historical/${date}`
+            `/currency/historical/${currentDate}`
           )
-          sessionData = data
-          sessionStorage.setItem('data', JSON.stringify(data))
+          const previousValue = await httpRequest.get(
+            `/currency/historical/${previousDate}`
+          )
+          sessionData = {
+            current: data,
+            previous: previousValue.data
+          }
+          sessionStorage.setItem('data', JSON.stringify(sessionData))
         } catch (err) {
           console.log(err.message)
         }
       }
+      const { current } = sessionData
       const base = {
-        code: sessionData.base_currency_code,
-        name: sessionData.base_currency_name
+        code: current.base_currency_code,
+        name: current.base_currency_name
       }
-      const rates = Object.keys(sessionData.rates).map(code => {
-        const newRates = {
-          code,
-          currency_name: sessionData.rates[code].currency_name,
-          amount: Number(sessionData.rates[code].rate_for_amount)
-        }
-        return newRates
-      })
+      const rates = {}
+      for (const keys in sessionData) {
+        rates[keys] = Object.keys(sessionData[keys].rates).map(code => {
+          const newRates = {
+            code,
+            currency_name: sessionData[keys].rates[code].currency_name,
+            amount: Number(sessionData[keys].rates[code].rate_for_amount)
+          }
+          return newRates
+        })
+      }
       commit('SET_CURRENCY_DATA', { base, rates })
     }
   }

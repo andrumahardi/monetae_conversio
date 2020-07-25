@@ -1,0 +1,6 @@
+{
+  "baseUrl": "https://currency-converter5.p.rapidapi.com",
+  "headers": {
+    "X-RapidApi-Key": "0b625951damshfc637349fe48ecep1f7fd1jsn0024a5e798dd"
+  }
+}

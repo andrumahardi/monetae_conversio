@@ -11,9 +11,14 @@ export default {
       this.$store.dispatch('fetchCurrenciesAsync', date)
     },
     getCurrentDate () {
-      const time = new Date()
-      const date = `${time.getFullYear()}-${time.getMonth() + 1}-${time.getDate()}`
-      this.fetchCurrencies(date)
+      const current = new Date()
+      const currentDate = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`
+
+      const previous = new Date()
+      previous.setDate(previous.getDate() - 7)
+      const previousDate = `${previous.getFullYear()}-${previous.getMonth() + 1}-${previous.getDate()}`
+
+      this.fetchCurrencies({ currentDate, previousDate })
     }
   },
   created () {
