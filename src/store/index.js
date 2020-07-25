@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Axios from 'axios'
+import { httpRequest } from '../config.js'
 
 Vue.use(Vuex)
 
@@ -20,13 +20,9 @@ export default new Vuex.Store({
       let sessionData = JSON.parse(sessionStorage.getItem('data'))
       if (!sessionData) {
         try {
-          const { data } = await Axios({
-            url: `${process.env.VUE_APP_RAPID_API_BASE_URL}/currency/historical/${date}`,
-            method: 'GET',
-            headers: {
-              'X-RapidApi-Key': process.env.VUE_APP_RAPID_API
-            }
-          })
+          const { data } = await httpRequest.get(
+            `/currency/historical/${date}`
+          )
           sessionData = data
           sessionStorage.setItem('data', JSON.stringify(data))
         } catch (err) {
