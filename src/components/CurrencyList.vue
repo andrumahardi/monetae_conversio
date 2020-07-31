@@ -1,9 +1,9 @@
 <template>
   <div id="currency-list">
     <div id="currency-list-header">
-      <h1>
-        Today's rates based on European Euro
-      </h1>
+      <h3>
+        Today's rates value
+      </h3>
       <span>
         <input
           v-model="searchFilter"
@@ -63,7 +63,6 @@ export default {
 
 #currency-list{
   @include flexbox(row, center, flex-start);
-  background: #e4eded;
   height: 37rem;
   width: calc(50% - 2rem);
   margin: 1rem;
@@ -76,7 +75,7 @@ export default {
   @include flexbox (column, center, center);
   height: 6rem;
 
-  h1{
+  h3{
     font-size: 18pt;
   }
 
@@ -184,7 +183,7 @@ export default {
   #currency-list-header{
     flex-direction: row;
 
-    h1{
+    h3{
       font-size: 12pt;
       margin: 0;
       padding: 1rem;

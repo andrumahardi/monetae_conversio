@@ -2,7 +2,7 @@
   <div id="currency-action">
     <div id="conversion-form">
       <div id="conversion-title">
-        <h1>Convert-O-Matic</h1>
+        <h2>Convert-O-Matic</h2>
         <p>automatic conversion from your desired amount</p>
       </div>
       <div class="input-section">
@@ -216,6 +216,10 @@ export default {
   margin: 2rem 0;
   color: $dark-blue;
 
+  h2{
+    font-size: 24pt;
+  }
+
   p{
     text-align: justify;
     font-size: 8.5pt;
@@ -280,7 +284,7 @@ export default {
 
   .input-section{
     input{
-      width: 75%;
+      width: calc(100% - 4.5rem);
     }
   }
 }

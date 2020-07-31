@@ -17,6 +17,10 @@ export default {
     const previousDate = `${previous.getFullYear()}-${previous.getMonth() + 1}-${previous.getDate()}`
 
     this.$store.dispatch('fetchPreviousCurrencies', { previousDate })
+
+    if (this.$route.path !== '/') {
+      this.$router.push('/')
+    }
   }
 }
 </script>

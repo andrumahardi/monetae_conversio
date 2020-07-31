@@ -2,7 +2,7 @@
   <div id="collection">
     <Navbar />
     <section id="collection-section">
-      <RelativeChart :rates="rates" />
+      <RelativeChart />
       <CurrencyList />
     </section>
   </div>
@@ -14,12 +14,7 @@ import RelativeChart from '../components/RelativeChart'
 import CurrencyList from '../components/CurrencyList'
 
 export default {
-  components: { Navbar, RelativeChart, CurrencyList },
-  computed: {
-    rates () {
-      return this.$store.state.rates
-    }
-  }
+  components: { Navbar, RelativeChart, CurrencyList }
 }
 </script>
 
@@ -37,6 +32,7 @@ export default {
 @media screen and (max-width: $mobile-breakpoint) {
   #collection-section{
     flex-direction: row;
+    height: 100%;
   }
 }
 
