@@ -16,7 +16,7 @@
 export default {
   computed: {
     rates () {
-      return this.$store.state.rates
+      return this.$store.state.rates.current
     }
   }
 }

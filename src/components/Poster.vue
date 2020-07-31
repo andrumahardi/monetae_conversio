@@ -1,6 +1,6 @@
 <template>
   <div id="poster">
-    <h1>Monetae Conversio</h1>
+    <h2>Monetae Conversio</h2>
     <p>
       Simple yet reliable source to convert your currency
     </p>
@@ -24,7 +24,7 @@
     display: block;
     position: relative;
 
-    h1, p{
+    h2, p{
       position: absolute;
       right: 0;
       color: $dark-blue;
@@ -32,16 +32,17 @@
       width: 12rem;
     }
 
-    h1{
+    h2{
       top: 3rem;
       text-align: center;
     }
 
     p{
-      top: 8.5rem;
+      top: 7.5rem;
       font-size: 8pt;
-      text-align: justify;
-      padding: 0.75rem;
+      right: 1.5rem;
+      text-align: center;
+      width: 9rem;
     }
   }
 }
