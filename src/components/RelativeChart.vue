@@ -54,6 +54,14 @@ export default {
   components: {
     'v-chart': ECharts
   },
+  watch: {
+    rates () {
+      if (this.rates.previous) {
+        this.fourChosenRates(this.rates)
+        this.chartDataGenerator()
+      }
+    }
+  },
   methods: {
     growth (value) {
       let colorStyle = 'color: #0c850c;'
@@ -76,66 +84,70 @@ export default {
           return { ...filtered, previousAmount: amount, growth }
         })
       this.chosenRates = filteredValue
+    },
+    chartDataGenerator () {
+      const filteredRates = {}
+      filteredRates.current = this.rates.current.filter(rate => (
+        rate.amount < 2 && rate.code !== 'EUR'
+      ))
+      const rateCodes = filteredRates.current.map(rate => (rate.code))
+      filteredRates.previous = this.rates.previous.filter(rate => (
+        rateCodes.includes(rate.code) && rate.code !== 'EUR'
+      ))
+
+      const option = {
+        legend: {
+          data: ['Today', 'Last Week']
+        },
+        tooltip: {
+          trigger: 'axis'
+        },
+        xAxis: {
+          type: 'category',
+          data: rateCodes,
+          axisLine: {
+            lineStyle: {
+              color: '#28acaf'
+            }
+          }
+        },
+        yAxis: {
+          type: 'value',
+          axisLine: {
+            lineStyle: {
+              color: '#28acaf'
+            }
+          }
+        },
+        series: [
+          {
+            name: 'Today',
+            data: filteredRates.current.map(rate => rate.amount),
+            type: 'bar',
+            itemStyle: {
+              color: '#157686',
+              barBorderRadius: [20, 20, 0, 0]
+            }
+          },
+          {
+            name: 'Last Week',
+            data: filteredRates.previous.map(rate => rate.amount),
+            type: 'bar',
+            itemStyle: {
+              color: '#ee8d13',
+              barBorderRadius: [20, 20, 0, 0]
+            }
+          }
+        ]
+      }
+      this.option = option
     }
   },
   mounted () {
-    this.fourChosenRates(this.rates)
-
-    const filteredRates = {}
-    filteredRates.current = this.rates.current.filter(rate => (
-      rate.amount < 2 && rate.code !== 'EUR'
-    ))
-    const rateCodes = filteredRates.current.map(rate => (rate.code))
-    filteredRates.previous = this.rates.previous.filter(rate => (
-      rateCodes.includes(rate.code) && rate.code !== 'EUR'
-    ))
-
-    const option = {
-      legend: {
-        data: ['Today', 'Last Week']
-      },
-      tooltip: {
-        trigger: 'axis'
-      },
-      xAxis: {
-        type: 'category',
-        data: rateCodes,
-        axisLine: {
-          lineStyle: {
-            color: '#28acaf'
-          }
-        }
-      },
-      yAxis: {
-        type: 'value',
-        axisLine: {
-          lineStyle: {
-            color: '#28acaf'
-          }
-        }
-      },
-      series: [
-        {
-          name: 'Today',
-          data: filteredRates.current.map(rate => rate.amount),
-          type: 'bar',
-          itemStyle: {
-            color: '#157686',
-            barBorderRadius: [20, 20, 0, 0]
-          }
-        },
-        {
-          name: 'Last Week',
-          data: filteredRates.previous.map(rate => rate.amount),
-          type: 'bar',
-          itemStyle: {
-            color: '#ee8d13',
-            barBorderRadius: [20, 20, 0, 0]
-          }
-        }
-      ]
+    if (this.rates.previous) {
+      this.fourChosenRates(this.rates)
+      this.chartDataGenerator()
     }
-    this.option = option
   }
 }
 </script>

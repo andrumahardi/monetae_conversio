@@ -1,12 +1,14 @@
 <template>
-  <nav>
+  <nav class="no-padding-y">
     <label
       v-on:click="showMenu"
       id="sm-screen-navmenu"
     >
       <i class='fas fa-list'></i>
     </label>
-    <h1 id="navbar-logo">Monetæ Conversio</h1>
+    <h1 id="navbar-logo">
+      Monetæ Conversio
+    </h1>
     <transition name="side-slide">
       <ul
         v-if="isClicked || window.width > 600"
@@ -14,6 +16,7 @@
       >
         <li
           role="button"
+          class="no-padding-y"
           @click="changePage('/')"
         >
           <a>
@@ -22,6 +25,7 @@
         </li>
         <li
           role="button"
+          class="no-padding-y"
           @click="changePage('/collection')"
         >
           <a>
@@ -73,10 +77,17 @@ export default {
 @import '../assets/styles/mixins';
 @import '../assets/styles/variables';
 
+$padding: ('no-padding': 0, 'no-padding-y': 0 1rem);
+
+@each $key, $value in $padding {
+  .#{$key}{
+    padding: $value;
+  }
+}
+
 nav{
   @include flexbox (row, space-between, center);
-  padding: 0 1rem;
-  height: 3rem;
+  height: $navbar-height;
   position: relative;
   background: linear-gradient(45deg, $dark-blue, #32c8c5);
   color: white;
@@ -87,20 +98,13 @@ nav{
   display: none;
 }
 
-#navbar-logo {
-  margin: 0;
-}
-
 #navbar-menu{
   @include flexbox (row, flex-end, center);
-  margin: 0;
   height: 100%;
 
   li{
-    @include flexbox (column, center, center);
+    @extend #navbar-menu;
     list-style: none;
-    height: 100%;
-    padding: 0.2rem 0.5rem;
     font-size: 10pt;
     cursor: pointer;
 
@@ -142,13 +146,6 @@ nav{
   #navbar-menu{
     position: absolute;
     right: 0;
-
-    li{
-      &:hover{
-        background: $dark-blue;
-        color: white;
-      }
-    }
   }
 }
 

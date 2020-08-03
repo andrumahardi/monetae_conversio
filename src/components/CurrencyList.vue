@@ -63,7 +63,7 @@ export default {
 
 #currency-list{
   @include flexbox(row, center, flex-start);
-  height: 37rem;
+  height: 36.5rem;
   width: calc(50% - 2rem);
   margin: 1rem;
   position: relative;

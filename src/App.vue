@@ -7,17 +7,6 @@
 <script>
 export default {
   created () {
-    const current = new Date()
-    const currentDate = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`
-
-    this.$store.dispatch('fetchCurrenciesAsync', { currentDate })
-
-    const previous = new Date()
-    previous.setDate(previous.getDate() - 7)
-    const previousDate = `${previous.getFullYear()}-${previous.getMonth() + 1}-${previous.getDate()}`
-
-    this.$store.dispatch('fetchPreviousCurrencies', { previousDate })
-
     if (this.$route.path !== '/') {
       this.$router.push('/')
     }

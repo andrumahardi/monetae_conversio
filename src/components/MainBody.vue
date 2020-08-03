@@ -159,10 +159,10 @@ export default {
 }
 
 .rates::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
+  border-radius: 1rem;
+  border-radius: 1rem;
   background: #ffffff;
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 
 @media screen and (max-width: 750px) {
