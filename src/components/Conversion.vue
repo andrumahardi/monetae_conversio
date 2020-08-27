@@ -238,6 +238,7 @@ export default {
     background: transparent;
     margin: 0 0.5rem;
     text-align: right;
+    -moz-appearance: textfield;
   }
 }
 
