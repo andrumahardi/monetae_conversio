@@ -16,11 +16,11 @@ import CurrencyList from '../components/CurrencyList'
 export default {
   components: { Navbar, RelativeChart, CurrencyList },
   created () {
-    const previous = new Date()
-    previous.setDate(previous.getDate() - 7)
-    const previousDate = `${previous.getFullYear()}-${previous.getMonth() + 1}-${previous.getDate()}`
+    // const previous = new Date()
+    // previous.setDate(previous.getDate() - 7)
+    // const previousDate = `${previous.getFullYear()}-${previous.getMonth() + 1}-${previous.getDate()}`
 
-    this.$store.dispatch('fetchPreviousCurrencies', { previousDate })
+    // this.$store.dispatch('fetchPreviousCurrencies', { previousDate })
   }
 }
 </script>

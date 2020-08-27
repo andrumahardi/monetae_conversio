@@ -10,6 +10,19 @@ export default {
     if (this.$route.path !== '/') {
       this.$router.push('/')
     }
+
+    const current = new Date()
+    const currentDate = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`
+
+    this.$store.dispatch('fetchCurrenciesAsync', { currentDate })
+
+    const previous = new Date()
+    previous.setDate(previous.getDate() - 7)
+    const previousDate = `${previous.getFullYear()}-${previous.getMonth() + 1}-${previous.getDate()}`
+
+    setTimeout(() => {
+      this.$store.dispatch('fetchPreviousCurrencies', { previousDate })
+    }, 1500)
   }
 }
 </script>

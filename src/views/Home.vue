@@ -17,10 +17,10 @@ import Poster from '../components/Poster'
 export default {
   components: { Navbar, Conversion, Poster },
   created () {
-    const current = new Date()
-    const currentDate = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`
+    // const current = new Date()
+    // const currentDate = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`
 
-    this.$store.dispatch('fetchCurrenciesAsync', { currentDate })
+    // this.$store.dispatch('fetchCurrenciesAsync', { currentDate })
   }
 }
 </script>
