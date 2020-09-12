@@ -22,7 +22,7 @@ export default {
 
     setTimeout(() => {
       this.$store.dispatch('fetchPreviousCurrencies', { previousDate })
-    }, 1500)
+    }, 2000)
   }
 }
 </script>

@@ -26,7 +26,7 @@ export default {
 #collection-section{
   @include flexbox (row, flex-start, center);
   height: calc(100vh - 3rem);
-  background: #d8dde4;
+  background: #dde4e6;
 }
 
 @media screen and (max-width: $mobile-breakpoint) {

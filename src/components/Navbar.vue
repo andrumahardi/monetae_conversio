@@ -2,8 +2,7 @@
   <nav class="no-padding-y">
     <label
       v-on:click="showMenu"
-      id="sm-screen-navmenu"
-    >
+      id="sm-screen-navmenu">
       <i class='fas fa-list'></i>
     </label>
     <h1 id="navbar-logo">
@@ -12,13 +11,11 @@
     <transition name="side-slide">
       <ul
         v-if="isClicked || window.width > 600"
-        id="navbar-menu"
-      >
+        id="navbar-menu">
         <li
           role="button"
           class="no-padding-y"
-          @click="changePage('/')"
-        >
+          @click="changePage('/')">
           <a>
             <p>Conversion</p>
           </a>
@@ -26,8 +23,7 @@
         <li
           role="button"
           class="no-padding-y"
-          @click="changePage('/collection')"
-        >
+          @click="changePage('/collection')">
           <a>
             <p>Collection</p>
           </a>
@@ -103,7 +99,6 @@ nav{
   height: 100%;
 
   li{
-    @extend #navbar-menu;
     list-style: none;
     font-size: 10pt;
     cursor: pointer;
